@@ -1,0 +1,48 @@
+.ChatMessage-card {
+  width: 761px;
+  height: 523px;
+  left: 15px;
+  background: #ffffff;
+  box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
+  flex-direction: row;
+}
+.ChatMessage-title {
+  position: relative;
+  /* width: 318px;*/
+  background-color: #d3d8f7;
+  height: 55px;
+  top: 0px;
+  text-align: center;
+  align-items: center;
+
+  flex-direction: row;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 55px;
+  text-align: center;
+
+  color: #000000;
+}
+.ChatMessage-title-close {
+  width: 55px;
+  height: 55px;
+  float: right;
+}
+.ChatMessage-area {
+  position: relative;
+  /* height: 28px; */
+  /* left: 634px; */
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+  text-align: left;
+}

@@ -1,0 +1,39 @@
+.Chat {
+  text-align: center;
+}
+.Chat-header {
+  background: #e5e5e5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.Chat-chatroom-card {
+  width: 352px;
+  height: 523px;
+  background: #ffffff;
+  box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
+  flex-direction: row;
+}
+.Chat-chatroom-title {
+  position: relative;
+  /* width: 318px;*/
+  background-color: #d3d8f7;
+  height: 55px;
+  top: 0px;
+  text-align: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+
+  color: #000000;
+}
