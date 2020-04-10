@@ -1,0 +1,56 @@
+.ChatGroup-card {
+  position: relative;
+  height: 70px;
+  width: 95%;
+  left: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 7px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background: #f9f9f9;
+  border-radius: 15px;
+}
+.ChatGroup-name {
+  position: relative;
+  width: 65%;
+  height: 60px;
+  padding-right: 25px;
+  background: none;
+  border: none;
+  /* border: 1px solid #c4c4c4; */
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  border-radius: 9px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: left;
+  line-height: 60px;
+  color: black;
+  text-indent: 10px;
+}
+.ChatGroup-button {
+  position: relative;
+  width: 80px;
+  height: 33px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  border-radius: 22px;
+}
