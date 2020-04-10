@@ -10,13 +10,13 @@
 }
 .ChatMessage-title {
   position: relative;
-  /* width: 318px;*/
+  
   background-color: #d3d8f7;
   height: 55px;
   top: 0px;
   text-align: center;
   align-items: center;
-
+  box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.10);
   flex-direction: row;
   font-family: Roboto;
   font-style: normal;
@@ -33,16 +33,36 @@
   float: right;
 }
 .ChatMessage-area {
+  padding-top: 10px;
   position: relative;
-  /* height: 28px; */
-  /* left: 634px; */
-
+  height: 75%;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  line-height: 28px;
 
   color: #000000;
-  text-align: left;
+  text-align: center;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.ChatMessage-inputMessage-area {
+  position: relative;
+  height: 13%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+
+  color: #000000;
+  text-align: center;
+  box-shadow: -12px -12px 30px rgba(0, 0, 0, 0.10);
+  border-radius: 0px 0px 20px 20px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background: none; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #9d9d9d; 
+  border-radius: 10px;
 }
