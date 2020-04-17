@@ -52,7 +52,7 @@ export default class InputMessage extends Component {
           id="InputMessage"
           maxLength="30"
           required
-          value = {input}
+          value = {this.state.input}
           onChange={(e)=>this.changeInput(e)}
           onKeyDown={e => {
             if (e.keyCode === 13) {
