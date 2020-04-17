@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import LogIn from "./component/LogIn";
+import Chat from "./component/Chat";
 
 function AppOld() {
   return (
@@ -24,7 +25,7 @@ function AppOld() {
   );
 }
 function App() {
-  return <LogIn />;
+  return <Chat />;
 }
 
 export default App;

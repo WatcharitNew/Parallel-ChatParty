@@ -1,0 +1,42 @@
+.InputMessage-input {
+  position: relative;
+  width: 80%;
+  height: 33px;
+
+  background: #f9f9f9;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 9px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: left;
+  line-height: 28px;
+  color: black;
+}
+.InputMessage-button {
+  position: relative;
+  width: auto;
+  height: 33px;
+  left: 10px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  border-radius: 22px;
+}
+.InputMessage-wrap {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}

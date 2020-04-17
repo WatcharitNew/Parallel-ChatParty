@@ -1,0 +1,14 @@
+.Chat {
+  text-align: center;
+  min-height: 100vh;
+}
+.Chat-header {
+  background: #e5e5e5;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
