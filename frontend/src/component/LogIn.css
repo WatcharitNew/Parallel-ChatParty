@@ -1,0 +1,86 @@
+.LogIn {
+  text-align: center;
+}
+.LogIn-header {
+  background: linear-gradient(228.88deg, #fdc094 8.79%, #5e72eb 88.15%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.LogIn-card {
+  width: 409px;
+  height: 330px;
+  background: #ffffff;
+  box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+.LogIn-title {
+  position: relative;
+  /* width: 318px;*/
+  height: 55px;
+  top: 47px;
+  text-align: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41px;
+  line-height: 48px;
+  text-align: center;
+
+  color: #000000;
+}
+.LogIn-text {
+  position: relative;
+  /* height: 28px; */
+  /* left: 634px; */
+  top: 73px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+}
+.LogIn-input {
+  position: relative;
+  width: 314px;
+  height: 43px;
+  /* left: 561px; */
+  top: 101px;
+
+  background: #f9f9f9;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 9px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  text-align: center;
+  line-height: 28px;
+  color: black;
+}
+.LogIn-button {
+  position: relative;
+  width: 133px;
+  height: 39px;
+  /* left: 654px; */
+  top: 129px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  align-items: center;
+  text-align: center;
+  border-radius: 22px;
+}
