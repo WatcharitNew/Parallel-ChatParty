@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import "./LogIn.css";
 import LocalStorageService from "../LocalStorageService";
+import axios from "axios";
 export default class LogIn extends Component {
   constructor() {
     super();
@@ -12,6 +13,7 @@ export default class LogIn extends Component {
 
   gotoChat = () => {
     LocalStorageService.setUserName(this.state.userName);
+    axios.post().then();
     window.location.href = "/chat";
   }
   
