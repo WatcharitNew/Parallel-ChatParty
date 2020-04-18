@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./InputMessage.css";
 import { Button } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
-import socketIOClient from 'socket.io-client'
+import socketIOClient from 'socket.io-client';
 export default class InputMessage extends Component {
   
   constructor() {
@@ -14,32 +14,18 @@ export default class InputMessage extends Component {
     }
   }
 
-  componentDidMount() {
-    this.response();
-  }
-
   send = () => {
     const { endpoint, input } = this.state;
     const socket = socketIOClient(endpoint);
     socket.emit('sent-message', input);
     this.setState({ input: '' });
-  }
-
-  response = () => {
-    const { endpoint, message } = this.state
-    const temp = message
-    const socket = socketIOClient(endpoint)
-    socket.on('new-message', (messageNew) => {
-      temp.push(messageNew)
-      this.setState({ message: temp })
-    })
-  
+    console.log("message sent!");
   }
 
   changeInput = (e) => {
     this.setState({ input: e.target.value })
   }
-  //*/
+  
   render() {
     const { input, message } = this.state;
     const style = { marginTop: 20, paddingLeft: 50 };
