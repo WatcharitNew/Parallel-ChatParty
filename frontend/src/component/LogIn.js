@@ -3,14 +3,13 @@ import { Button } from "@material-ui/core";
 import "./LogIn.css";
 import LocalStorageService from "../LocalStorageService";
 import axios from "axios";
-import socketIOClient from 'socket.io-client';
 var utilities = require("../Utilities.json");
 export default class LogIn extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userName: "",
-      endpoint: "http://localhost:10001" // เชื่อมต่อไปยัง url ของ realtime server
+      socket: props.socket,
     };
   }
 
@@ -24,9 +23,7 @@ export default class LogIn extends Component {
         switch (response.status) {
           // Created
           case 201:
-            const { endpoint, userName } = this.state;
-            const socket = socketIOClient(endpoint);
-            socket.emit("login", {
+            this.state.socket.emit("login", {
               userName: this.state.userName
             });
             this.setState({ userName: "" });

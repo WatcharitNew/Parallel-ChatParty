@@ -3,16 +3,15 @@ import "./Message.css";
 import MessageAnnounce from "./MessageAnnounce";
 import MessageLeft from "./MessageLeft";
 import MessageRight from "./MessageRight";
-import socketIOClient from "socket.io-client";
 import LocalStorageService from "../LocalStorageService";
 
 export default class Message extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       message: [],
       name: LocalStorageService.getUserName(),
-      endpoint: "http://localhost:10001", // เชื่อมต่อไปยัง url ของ realtime server
+      socket: props.socket,
     };
   }
 
@@ -35,8 +34,7 @@ export default class Message extends Component {
   response = () => {
     const { endpoint, message } = this.state;
     const temp = message;
-    const socket = socketIOClient(endpoint);
-    socket.on("new-message", (messageNew) => {
+    this.state.socket.on("new-message", (messageNew) => {
       console.log(messageNew);
       temp.push(messageNew);
       this.setState({ message: temp });

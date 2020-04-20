@@ -2,25 +2,23 @@ import React, { Component } from "react";
 import "./InputMessage.css";
 import { Button } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
-import socketIOClient from 'socket.io-client';
 import LocalStorageService from '../LocalStorageService';
 export default class InputMessage extends Component {
   
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       input: '',
       message: [],
       id: LocalStorageService.getUserID(),
       chatRoom: 1,
-      endpoint: "http://localhost:10001" // เชื่อมต่อไปยัง url ของ realtime server
+      socket: props.socket,
     }
   }
 
   send = () => {
-    const { endpoint, input, id, chatRoom } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.emit('sent-message', {
+    const { input, id, chatRoom } = this.state;
+    this.state.socket.emit('sent-message', {
       text: input,
       client: id,
       chatRoom: chatRoom
@@ -34,8 +32,6 @@ export default class InputMessage extends Component {
   }
   
   render() {
-    const { input, message } = this.state;
-    const style = { marginTop: 20, paddingLeft: 50 };
     return (
       <div
         className="InputMessage-wrap"
@@ -63,13 +59,6 @@ export default class InputMessage extends Component {
           Send 
           <SendIcon />
         </Button>
-        {
-          message.map((data, i) =>
-            <div key={i} style={style} >
-              {i + 1} : {data}
-            </div>
-          )
-        }
       </div>
     );
   }

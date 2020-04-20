@@ -10,7 +10,7 @@ export default class Chat extends Component {
         <NavBar />
         <div className="Chat-header">
           <ChatRoom />
-          <ChatMessage />
+          <ChatMessage socket={this.props.socket} />
         </div>
       </div>
     );

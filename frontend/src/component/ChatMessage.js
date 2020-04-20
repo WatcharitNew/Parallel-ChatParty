@@ -21,10 +21,10 @@ export default class ChatMessage extends Component {
           </Button>
         </div>
         <div className="ChatMessage-area">
-          <Message />
+          <Message socket={this.props.socket} />
         </div>
         <div className="ChatMessage-inputMessage-area">
-          <InputMessage />
+          <InputMessage socket={this.props.socket} />
         </div>
       </div>
     );
