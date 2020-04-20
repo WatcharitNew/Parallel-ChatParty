@@ -9,9 +9,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      socket: socketIOClient("http://localhost:10001")
+      socket: null,
     };
   }
+
+  componentWillMount() {
+    const socket = socketIOClient("http://localhost:10001");
+		this.setState({socket});
+	}
   
   render() {
     return (

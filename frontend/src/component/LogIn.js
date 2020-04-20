@@ -23,9 +23,11 @@ export default class LogIn extends Component {
         switch (response.status) {
           // Created
           case 201:
+            /*
             this.state.socket.emit("login", {
               userName: this.state.userName
             });
+            */
             this.setState({ userName: "" });
             console.log("already push");
             const id = response.data.userId;

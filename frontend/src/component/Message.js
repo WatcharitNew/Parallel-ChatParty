@@ -11,9 +11,15 @@ export default class Message extends Component {
     this.state = {
       message: [],
       name: LocalStorageService.getUserName(),
-      socket: props.socket,
+      socket: props.socket
     };
   }
+
+  componentWillMount() {
+    this.state.socket.emit("login", {
+      userName: this.state.name
+    });
+	}
 
   componentDidMount = () => {
     this.response();
@@ -34,6 +40,7 @@ export default class Message extends Component {
   response = () => {
     const { endpoint, message } = this.state;
     const temp = message;
+
     this.state.socket.on("new-message", (messageNew) => {
       console.log(messageNew);
       temp.push(messageNew);
