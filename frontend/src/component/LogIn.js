@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import "./LogIn.css";
-import LocalStorageService from "../LocalStorageService";
+import SessionStorageService from "../SessionStorageService";
 import axios from "axios";
 var utilities = require("../Utilities.json");
 export default class LogIn extends Component {
@@ -14,7 +14,7 @@ export default class LogIn extends Component {
   }
 
   gotoChat = () => {
-    LocalStorageService.setUserName(this.state.userName);
+    SessionStorageService.setUserName(this.state.userName);
     axios
       .post(utilities["backend-url"] + "/user/login", {
         userName: this.state.userName,
@@ -31,7 +31,7 @@ export default class LogIn extends Component {
             this.setState({ userName: "" });
             console.log("already push");
             const id = response.data.userId;
-            LocalStorageService.setUserID(id);
+            SessionStorageService.setUserID(id);
             window.location.href = "/chat";
             break;
 

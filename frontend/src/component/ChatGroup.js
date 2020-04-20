@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ChatGroup.css";
 import { Button } from "@material-ui/core";
+import SessionStorageService from "../SessionStorageService";
 export default class ChatGroup extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +32,10 @@ export default class ChatGroup extends Component {
           style={{ backgroundColor: "#60E2B3" }}
           onClick={(e) => {
             alert("You have joined " + groupName);
+            this.props.socket.emit("join-group", {
+                chatRoom: 1,
+                client: SessionStorageService.getUserID()
+            });
           }}
           className="ChatGroup-button"
         >

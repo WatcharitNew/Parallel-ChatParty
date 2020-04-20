@@ -1,5 +1,5 @@
-// LocalStorageService.js
-const LocalStorageService = (function () {
+// SessionStorageService.js
+const SessionStorageService = (function () {
     var _service;
     function _getService() {
         if (!_service) {
@@ -10,23 +10,23 @@ const LocalStorageService = (function () {
     }
 
     function _setUserName(userName) {
-        localStorage.setItem('userName', userName);
+        sessionStorage.setItem('userName', userName);
     }
     function _getUserName() {
-        return localStorage.getItem('userName') || '';
+        return sessionStorage.getItem('userName') || '';
     }
     function _clearUserName() {
-        localStorage.removeItem('userName');
+        sessionStorage.removeItem('userName');
     }
 
     function _setUserID(userID) {
-        localStorage.setItem('userID', userID);
+        sessionStorage.setItem('userID', userID);
     }
     function _getUserID() {
-        return localStorage.getItem('userID') || '';
+        return sessionStorage.getItem('userID') || '';
     }
     function _clearUserID() {
-        localStorage.removeItem('userID');
+        sessionStorage.removeItem('userID');
     }
 
     function _checkOut() {
@@ -45,4 +45,4 @@ const LocalStorageService = (function () {
         checkOut: _checkOut
     }
 })();
-export default LocalStorageService;
+export default SessionStorageService;

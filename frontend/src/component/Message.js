@@ -3,33 +3,38 @@ import "./Message.css";
 import MessageAnnounce from "./MessageAnnounce";
 import MessageLeft from "./MessageLeft";
 import MessageRight from "./MessageRight";
-import LocalStorageService from "../LocalStorageService";
+import SessionStorageService from "../SessionStorageService";
+import axios from 'axios';
+var utilities = require("../Utilities.json");
 
 export default class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: [],
-      name: LocalStorageService.getUserName(),
-      socket: props.socket
+      name: SessionStorageService.getUserName(),
+      socket: props.socket,
+      chatRoom: 1,
     };
   }
 
-  componentWillMount() {
+  componentDidMount = () => {
     this.state.socket.emit("login", {
       userName: this.state.name
     });
-	}
-
-  componentDidMount = () => {
     this.response();
+    
+    axios.get(utilities["backend-url"] + "/message/" + this.state.chatRoom).then(res => {
+      console.log(res.data);
+      //this.setState({message: res});
+    })
 
     //for create chatRoom
     /*const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.emit('create-group', {
       chatName: "Test1",
-      client: LocalStorageService.getUserID()
+      client: SessionStorageService.getUserID()
     });
 
     socket.on("new-group", (groupNew) => {
@@ -42,8 +47,18 @@ export default class Message extends Component {
     const temp = message;
 
     this.state.socket.on("new-message", (messageNew) => {
+      var tmpMsg=messageNew;
       console.log(messageNew);
-      temp.push(messageNew);
+      tmpMsg.type = "msg";
+      temp.push(tmpMsg);
+      this.setState({ message: temp });
+    });
+
+    this.state.socket.on("new-member", (memberNew) => {
+      var tmpMember=memberNew;
+      console.log(memberNew);
+      tmpMember.type = "announce";
+      temp.push(tmpMember);
       this.setState({ message: temp });
     });
   };
@@ -51,17 +66,16 @@ export default class Message extends Component {
   displayAllMessage = () => {
     return this.state.message.map((msg, idx) => (
       <div key={idx}>
-        {msg.userName === this.state.name ? (
+        {msg.type === "announce"? <MessageAnnounce label={msg.userName + " has joined"} />:msg.userName === this.state.name ? (
           <MessageRight
-            sender={msg.userName}
             text={msg.text}
-            time={msg.createdTime}
+            time={msg.createdTime.substring(11,19)}
           />
         ) : (
           <MessageLeft
             sender={msg.userName}
             text={msg.text}
-            time={msg.createdTime}
+            time={msg.createdTime.substring(11,19)}
           />
         )}
       </div>
@@ -72,8 +86,6 @@ export default class Message extends Component {
     return (
       <div>
         <MessageAnnounce label={"Unread messages"} />
-        <MessageLeft sender={"Shiba"} text={"Lorem ipsum"} time={"1.11 PM"} />
-        <MessageRight text={"Hello"} time={"2.11 PM"} />
         {this.displayAllMessage()}
       </div>
     );

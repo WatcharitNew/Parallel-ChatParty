@@ -9,7 +9,7 @@ export default class ChatRoom extends Component {
         <div className="ChatRoom-title">Chatroom</div>
         <div className="ChatGroup-area" align="center">
           <ChatGroup
-            data={{ groupName: "ABCABCABCABCABCABCABCABC", isMember: true }}
+            data={{ groupName: "ABCABCABCABCABCABCABCABC", isMember: false }} socket={this.props.socket}
           />
           <ChatGroup data={{ groupName: "EFG", isMember: false }} />
           <ChatGroup data={{ groupName: "HIJ", isMember: false }} />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./InputMessage.css";
 import { Button } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
-import LocalStorageService from '../LocalStorageService';
+import SessionStorageService from '../SessionStorageService';
 export default class InputMessage extends Component {
   
   constructor(props) {
@@ -10,7 +10,7 @@ export default class InputMessage extends Component {
     this.state = {
       input: '',
       message: [],
-      id: LocalStorageService.getUserID(),
+      id: SessionStorageService.getUserID(),
       chatRoom: 1,
       socket: props.socket,
     }
