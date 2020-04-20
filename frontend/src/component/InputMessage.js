@@ -3,6 +3,7 @@ import "./InputMessage.css";
 import { Button } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
 import socketIOClient from 'socket.io-client';
+import LocalStorageService from '../LocalStorageService';
 export default class InputMessage extends Component {
   
   constructor() {
@@ -10,14 +11,20 @@ export default class InputMessage extends Component {
     this.state = {
       input: '',
       message: [],
+      id: LocalStorageService.getUserID(),
+      chatRoom: 1,
       endpoint: "http://localhost:10001" // เชื่อมต่อไปยัง url ของ realtime server
     }
   }
 
   send = () => {
-    const { endpoint, input } = this.state;
+    const { endpoint, input, id, chatRoom } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.emit('sent-message', input);
+    socket.emit('sent-message', {
+      text: input,
+      client: id,
+      chatRoom: chatRoom
+    });
     this.setState({ input: '' });
     console.log("message sent!");
   }
