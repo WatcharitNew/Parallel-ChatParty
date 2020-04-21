@@ -20,7 +20,14 @@ export default class ChatRoom extends Component {
       <div className="ChatRoom-card" align="center">
         <div className="ChatRoom-title">Chatroom</div>
         <div className="ChatGroup-area" align="center">
-          {this.displayAllGroup()}
+          {this.state.groupList.map((item) => (
+            <ChatGroup
+              key={item.chatRoomId}
+              id={item.chatRoomId}
+              title={item.chatName}
+              data={item}
+            />
+          ))}
         </div>
         <div className="NewGroup-area">
           <NewGroup />
@@ -38,24 +45,20 @@ export default class ChatRoom extends Component {
       />
     ));
   }
-  includeMe(userId) {
-    return (userId = LocalStorageService.getUserID);
-  }
   response = () => {
     const { groupList, endpoint } = this.state;
+    const id = LocalStorageService.getUserID();
     const temp = groupList;
     const socket = socketIOClient(endpoint);
     socket.on("new-group", (newGroup) => {
-      const isMember = newGroup.member.find(this.includeMe());
+      const isMember = newGroup.member.indexOf(id) != -1;
       temp.push({
         chatName: newGroup.chatName,
         chatRoomId: newGroup.chatRoom,
         isMember: isMember,
       });
-      // alert(JSON.stringify(temp));
       this.setState({ groupList: temp });
       console.log(this.state.groupList);
-      window.location.reload();
     });
   };
   async componentDidMount() {
