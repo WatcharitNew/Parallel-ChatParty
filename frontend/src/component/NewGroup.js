@@ -7,20 +7,21 @@ export default class NewGroupCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { input: "", endpoint: "http://localhost:10001", staus: 0 };
+    this.state = { input: "", endpoint: "http://localhost:10001" };
   }
   changeInput = (e) => {
     this.setState({ input: e.target.value });
   };
   send = () => {
     const { endpoint, input } = this.state;
+    if (!input) return;
     const socket = socketIOClient(endpoint);
     let tmp = {
       chatName: input,
       client: LocalStorageService.getUserID(),
     };
     socket.emit("create-group", tmp);
-    this.setState({ input: " " });
+    this.setState({ input: "" });
     alert(tmp.chatName + " is created");
     console.log("new group sent!");
   };
