@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import "./ChatGroup.css";
 import { Button } from "@material-ui/core";
+
 export default class ChatGroup extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      chatName: this.props.data.chatName,
+      chatRoomId: this.props.data.chatRoomId,
+      isMember: this.props.data.isMember,
+    };
     this.groupBtn = this.groupBtn.bind(this);
   }
   groupBtn(groupName) {
-    if (this.props.data.isMember) {
+    if (this.state.isMember) {
       return (
         <Button
           variant="contained"
@@ -42,8 +47,8 @@ export default class ChatGroup extends Component {
   render() {
     return (
       <div className="ChatGroup-card">
-        <div className="ChatGroup-name">{this.props.data.groupName}</div>
-        {this.groupBtn(this.props.data.groupName)}
+        <div className="ChatGroup-name">{this.state.chatName}</div>
+        {this.groupBtn(this.state.chatName)}
       </div>
     );
   }
