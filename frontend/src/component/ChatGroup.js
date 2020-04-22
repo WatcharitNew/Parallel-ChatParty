@@ -70,10 +70,39 @@ export default class ChatGroup extends Component {
       );
     }
   };
+  onClickGroupName = () => {
+    const { chatRoomId, endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    let tmp = {
+      chatRoom: chatRoomId,
+      client: LocalStorageService.getUserID(),
+    };
+    socket.emit("change-room-front", tmp);
+    console.log("change group!" + JSON.stringify(tmp));
+  };
+  groupName = () => {
+    if (this.state.isMember) {
+      return (
+        <a
+          className="ChatGroup-name"
+          onClick={() => {
+            this.onClickGroupName();
+          }}
+          href="#"
+        >
+          <span className="ChatGroup-nameClick">{this.state.chatName}</span>
+        </a>
+      );
+    } else {
+      return <a className="ChatGroup-name">{this.state.chatName}</a>;
+    }
+  };
   render() {
     return (
-      <div className="ChatGroup-card">
-        <div className="ChatGroup-name">{this.state.chatName}</div>
+      <div
+        className={this.state.isMember ? "ChatGroup-cardA" : "ChatGroup-cardB"}
+      >
+        {this.groupName()}
         {this.groupBtn(this.state.chatName)}
       </div>
     );
