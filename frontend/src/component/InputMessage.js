@@ -59,8 +59,8 @@ export default class InputMessage extends Component {
               client: this.state.id,
               chatRoom: SessionStorageService.getChatRoomID()===2?1:2
             });
-            console.log("change room!");
-            }*/
+            console.log("change room!");*/
+            }
           }
         >
           Send 
