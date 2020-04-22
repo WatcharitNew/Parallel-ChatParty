@@ -9,15 +9,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      socket: null,
+      socket: socketIOClient("http://localhost:10001"),
     };
   }
 
-  componentWillMount() {
-    const socket = socketIOClient("http://localhost:10001");
-		this.setState({socket});
-	}
-  
   render() {
     return (
       <Router>

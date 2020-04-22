@@ -33,7 +33,7 @@ export default class ChatGroup extends Component {
           onClick={(e) => {
             alert("You have joined " + groupName);
             this.props.socket.emit("join-group", {
-                chatRoom: 1,
+                chatRoom: 2,
                 client: SessionStorageService.getUserID()
             });
           }}

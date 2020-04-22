@@ -29,9 +29,20 @@ const SessionStorageService = (function () {
         sessionStorage.removeItem('userID');
     }
 
+    function _setChatRoomID(chatRoomID) {
+        sessionStorage.setItem('chatRoomID', chatRoomID);
+    }
+    function _getChatRoomID() {
+        return sessionStorage.getItem('chatRoomID') || '';
+    }
+    function _clearChatRoomID() {
+        sessionStorage.removeItem('chatRoomID');
+    }
+
     function _checkOut() {
         _clearUserName();
         _clearUserID();
+        _clearChatRoomID();
     }
 
     return {
@@ -42,6 +53,9 @@ const SessionStorageService = (function () {
         setUserID: _setUserID,
         getUserID: _getUserID,
         clearUserID: _clearUserID,
+        setChatRoomID: _setChatRoomID,
+        getChatRoomID: _getChatRoomID,
+        clearChatRoomID: _clearChatRoomID,
         checkOut: _checkOut
     }
 })();

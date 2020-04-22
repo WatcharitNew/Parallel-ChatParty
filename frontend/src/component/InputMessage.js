@@ -11,7 +11,7 @@ export default class InputMessage extends Component {
       input: '',
       message: [],
       id: SessionStorageService.getUserID(),
-      chatRoom: 1,
+      chatRoom: SessionStorageService.getChatRoomID()===""?1:SessionStorageService.getChatRoomID(),
       socket: props.socket,
     }
   }
@@ -51,10 +51,17 @@ export default class InputMessage extends Component {
         />
         <Button
           variant="contained"
-          type="submit"
           style={{ backgroundColor: "#65B2FA" }}
           className="InputMessage-button"
-          onClick={()=>this.send()}
+          onClick={()=>{
+            this.send();
+            /*this.state.socket.emit('change-room-front', {
+              client: this.state.id,
+              chatRoom: SessionStorageService.getChatRoomID()===2?1:2
+            });
+            console.log("change room!");
+            }*/
+          }
         >
           Send 
           <SendIcon />
