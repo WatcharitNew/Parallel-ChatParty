@@ -17,7 +17,7 @@ export default class ChatRoom extends Component {
   }
   render() {
     return (
-      <div className="ChatRoom-card" align="center">
+      <div className="ChatRoom-card border border-warning" align="center">
         <div className="ChatRoom-title">Chatroom</div>
         <div className="ChatGroup-area" align="center">
           {this.state.groupList.map((item) => (

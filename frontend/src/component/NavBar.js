@@ -8,7 +8,13 @@ import LocalStorageService from "../LocalStorageService";
 export default class NavBar extends Component {
   render() {
     return (
-      <div className="NavBar-tab">
+      // <nav class="navbar navbar-light bg-light">
+      //   <a class="navbar-brand" href="#">
+      //     Navbar
+      //   </a>
+      // </nav>
+
+      <div className="NavBar-tab border border-succes">
         <div className="NavBar-title">ChatRoom</div>
         <div className="NavBar-userName">
           {LocalStorageService.getUserName()}
