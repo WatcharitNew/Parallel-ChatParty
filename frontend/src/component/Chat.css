@@ -1,6 +1,13 @@
 .Chat {
   text-align: center;
   min-height: 100vh;
+  min-width: 100% !important;
+  background-color: aquamarine;
+}
+.container-fluid {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .Chat-header {
   background: #e5e5e5;
@@ -11,4 +18,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.Chat-Block {
+  padding: 0vw 2vw !important;
+  color: red;
+}
+.Chat-Plane {
+  width: 100vw;
+  max-height: calc(100vh - 60px);
 }

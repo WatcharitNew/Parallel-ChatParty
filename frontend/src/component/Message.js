@@ -44,7 +44,7 @@ export default class Message extends Component {
         console.log(res.data);
         this.setState({ message: res.data });
       });
-  }
+  };
 
   response = () => {
     this.state.socket.on("new-message", (messageNew) => {
@@ -80,7 +80,7 @@ export default class Message extends Component {
     this.state.socket.on("change-room-back", (changeRoom) => {
       console.log(changeRoom);
       if (changeRoom.client === SessionStorageService.getUserID()) {
-        this.setState({chatRoom: changeRoom.chatRoom, message: []},()=>{
+        this.setState({ chatRoom: changeRoom.chatRoom, message: [] }, () => {
           this.loadMessage();
         });
       }
@@ -113,7 +113,6 @@ export default class Message extends Component {
   };
 
   render() {
-    
     return (
       <div>
         <MessageAnnounce label={"Unread messages"} />

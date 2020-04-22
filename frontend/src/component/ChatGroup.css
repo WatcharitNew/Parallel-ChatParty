@@ -1,4 +1,4 @@
-.ChatGroup-card {
+.ChatGroup-cardA {
   position: relative;
   height: 70px;
   width: 95%;
@@ -14,6 +14,24 @@
   text-align: center;
   color: #000000;
   background: #f9f9f9;
+  border-radius: 15px;
+}
+.ChatGroup-cardB {
+  position: relative;
+  height: 70px;
+  width: 95%;
+  left: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 7px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  background: #dadceb;
   border-radius: 15px;
 }
 .ChatGroup-name {
@@ -35,10 +53,14 @@
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  text-align: left;
+  /* text-align: left; */
+  text-indent: 10px;
+  text-align: center;
   line-height: 60px;
   color: black;
-  text-indent: 10px;
+}
+.ChatGroup-nameClick:hover {
+  cursor: pointer;
 }
 .ChatGroup-button {
   position: relative;
@@ -53,4 +75,7 @@
   align-items: center;
   text-align: center;
   border-radius: 22px;
+}
+.ChatGroup-nameClick {
+  color: #5e72eb;
 }
