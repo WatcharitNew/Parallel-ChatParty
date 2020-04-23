@@ -16,7 +16,7 @@ export default class Message extends Component {
       socket: props.socket,
       chatRoom:
         SessionStorageService.getChatRoomID().toString() === ""
-          ? 1
+          ? 0
           : SessionStorageService.getChatRoomID(),
       ref: React.createRef(),
     };
