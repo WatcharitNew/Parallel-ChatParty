@@ -12,6 +12,8 @@ export default class ChatGroup extends Component {
       chatRoomId: this.props.data.chatRoomId,
       isMember: this.props.data.isMember,
       endpoint: "http://localhost:10001",
+      socket: this.props.socket,
+      selected: false,
     };
   }
   joinGroup = () => {
@@ -33,10 +35,18 @@ export default class ChatGroup extends Component {
       chatRoom: chatRoomId,
       client: SessionStorageService.getUserID(),
     };
+    if (this.state.selected) {
+      let clr = {
+        chatRoom: 0,
+        client: SessionStorageService.getUserID(),
+      };
+      console.log(clr);
+      this.props.socket.emit("change-room-front", clr);
+    }
     this.props.socket.emit("leave-group", tmp);
-    this.setState({ isMember: false });
+    this.setState({ isMember: false, selected: false });
     alert(`You has left ${chatName}`);
-    console.log("left group!");
+    console.log("left group! now @" + SessionStorageService.getChatRoomID());
   };
   groupBtn = (groupName) => {
     if (this.state.isMember) {
@@ -77,7 +87,8 @@ export default class ChatGroup extends Component {
       client: SessionStorageService.getUserID(),
     };
     this.props.socket.emit("change-room-front", tmp);
-    console.log("change group!");
+    // SessionStorageService.setChatRoomID(chatRoomId);
+    console.log("change group to" + chatRoomId);
   };
   groupName = () => {
     if (this.state.isMember) {
@@ -95,14 +106,28 @@ export default class ChatGroup extends Component {
       return <a className="ChatGroup-name">{this.state.chatName}</a>;
     }
   };
+  getRoom = () => {
+    this.state.socket.on("change-room-back", (changeRoom) => {
+      console.log(changeRoom);
+      if (changeRoom.client === SessionStorageService.getUserID()) {
+        SessionStorageService.setChatRoomID(changeRoom.chatRoom);
+        this.setState({
+          selected: changeRoom.chatRoom === this.state.chatRoomId,
+        });
+      }
+    });
+  };
   render() {
     return (
       <div
-        className={this.state.isMember ? "ChatGroup-cardA" : "ChatGroup-cardB"}
+        className={this.state.selected ? "ChatGroup-cardA" : "ChatGroup-cardB"}
       >
         {this.groupName()}
         {this.groupBtn(this.state.chatName)}
       </div>
     );
+  }
+  componentDidMount() {
+    this.getRoom();
   }
 }
