@@ -1,7 +1,7 @@
 .ChatRoom-card {
   min-width: 352px;
   width: 100%;
-  min-height: 220px;
+  min-height: 200px;
   height: calc(95vh - 60px);
   background: #d3d8f7;
   box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.25);
