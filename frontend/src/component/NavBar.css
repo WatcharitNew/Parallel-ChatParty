@@ -33,3 +33,6 @@
 .NavBar-logOut {
   color: white !important;
 }
+.NavBar-logOut:focus {
+  outline: 0;
+}

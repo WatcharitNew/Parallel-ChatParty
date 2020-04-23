@@ -68,6 +68,9 @@
   line-height: 28px;
   color: black;
 }
+.LogIn-input:focus {
+  outline: 0;
+}
 .LogIn-button {
   position: relative;
   width: 133px;

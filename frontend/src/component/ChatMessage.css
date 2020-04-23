@@ -40,6 +40,9 @@
   height: 55px;
   float: right;
 }
+.ChatMessage-title-close:focus {
+  outline: 0;
+}
 .ChatMessage-area {
   padding-top: 10px;
   position: relative;

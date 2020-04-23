@@ -56,6 +56,9 @@
   text-align: center;
   border-radius: 22px;
 }
+.NewGroup-button:focus {
+  outline: 0;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
