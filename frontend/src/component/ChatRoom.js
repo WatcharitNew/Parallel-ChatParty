@@ -43,7 +43,6 @@ export default class ChatRoom extends Component {
     const { groupList, endpoint } = this.state;
     const id = SessionStorageService.getUserID();
     const temp = groupList;
-    const socket = socketIOClient(endpoint);
     this.props.socket.on("new-group", (newGroup) => {
       const isMember = newGroup.member.indexOf(id) != -1;
       temp.push({

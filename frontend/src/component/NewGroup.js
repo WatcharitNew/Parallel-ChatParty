@@ -15,7 +15,6 @@ export default class NewGroupCard extends Component {
   send = () => {
     const { endpoint, input } = this.state;
     if (!input) return;
-    const socket = socketIOClient(endpoint);
     let tmp = {
       chatName: input,
       client: SessionStorageService.getUserID(),

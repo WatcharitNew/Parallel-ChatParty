@@ -27,7 +27,7 @@ export default class ChatMessage extends Component {
     return (
       <div className="ChatMessage-card">
         <div className="ChatMessage-title">
-          {this.state.chatName === "0" ? "Empty chat" : this.state.chatName}
+          {!this.state.chatName ? "Empty chat" : this.state.chatName}
           <Button
             color="secondary"
             className="ChatMessage-title-close"
@@ -52,7 +52,7 @@ export default class ChatMessage extends Component {
       console.log(changeRoom);
       if (changeRoom.client === SessionStorageService.getUserID()) {
         SessionStorageService.setChatRoomID(changeRoom.chatRoom);
-        this.setState({ chatName: changeRoom.chatRoom.toString() });
+        this.setState({ chatName: changeRoom.chatName });
       }
     });
   }

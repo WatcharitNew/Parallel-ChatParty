@@ -18,7 +18,6 @@ export default class ChatGroup extends Component {
   }
   joinGroup = () => {
     const { chatName, chatRoomId, isMember, endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
     let tmp = {
       chatRoom: chatRoomId,
       client: SessionStorageService.getUserID(),
@@ -30,11 +29,11 @@ export default class ChatGroup extends Component {
   };
   leaveGroup = () => {
     const { chatName, chatRoomId, isMember, endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
     let tmp = {
       chatRoom: chatRoomId,
       client: SessionStorageService.getUserID(),
     };
+    this.props.socket.emit("leave-group", tmp);
     if (this.state.selected) {
       let clr = {
         chatRoom: 0,
@@ -43,7 +42,6 @@ export default class ChatGroup extends Component {
       console.log(clr);
       this.props.socket.emit("change-room-front", clr);
     }
-    this.props.socket.emit("leave-group", tmp);
     this.setState({ isMember: false, selected: false });
     alert(`You has left ${chatName}`);
     console.log("left group! now @" + SessionStorageService.getChatRoomID());
@@ -81,7 +79,6 @@ export default class ChatGroup extends Component {
   };
   onClickGroupName = () => {
     const { chatRoomId, endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
     let tmp = {
       chatRoom: chatRoomId,
       client: SessionStorageService.getUserID(),
