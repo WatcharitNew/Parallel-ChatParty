@@ -2,14 +2,19 @@
   /* min-width: 761px; */
   min-width: 352px;
   width: 100%;
-  height: 523px;
-  min-height: calc(95vh - 60px);
+  min-height: 400px;
+  height: calc(95vh - 60px);
   /* left: 15px; */
   background: #ffffff;
   box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.25);
   /* border-radius: 20px; */
   position: relative;
   flex-direction: row;
+}
+@media only screen and (max-width: 750px) {
+  .ChatMessage-card {
+    height: calc(70vh - 60px);
+  }
 }
 .ChatMessage-title {
   position: relative;

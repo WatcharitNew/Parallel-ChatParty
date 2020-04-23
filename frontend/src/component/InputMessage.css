@@ -16,6 +16,11 @@
   line-height: 28px;
   color: black;
 }
+@media only screen and (max-width: 750px) {
+  .InputMessage-input {
+    width: 60%;
+  }
+}
 .InputMessage-button {
   position: relative;
   width: auto;
