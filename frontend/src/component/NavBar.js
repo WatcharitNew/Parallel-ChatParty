@@ -6,6 +6,10 @@ import IconButton from "@material-ui/core/IconButton";
 import "./NavBar.css";
 import SessionStorageService from "../SessionStorageService";
 export default class NavBar extends Component {
+  logOut = () => {
+    SessionStorageService.checkOut();
+    window.location.href = "/";
+  };
   render() {
     return (
       <div className="NavBar-tab">
@@ -16,7 +20,7 @@ export default class NavBar extends Component {
         <IconButton
           className="NavBar-logOut"
           onClick={(e) => {
-            alert("Logout");
+            this.logOut();
           }}
           color="inherit"
         >
