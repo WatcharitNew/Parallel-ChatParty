@@ -11,11 +11,27 @@ export default class InputMessage extends Component {
       message: [],
       id: SessionStorageService.getUserID(),
       chatRoom:
-        SessionStorageService.getChatRoomID() === ""
+        SessionStorageService.getChatRoomID().toString() === ""
           ? 1
           : SessionStorageService.getChatRoomID(),
       socket: props.socket,
     };
+  }
+
+  componentDidMount = () => {
+    this.state.socket.emit("login", {
+      userName: SessionStorageService.getUserName(),
+    });
+    this.response();
+  }
+
+  response = () => {
+    this.state.socket.on("change-room-back", (changeRoom) => {
+      console.log(changeRoom);
+      if(changeRoom.client === SessionStorageService.getUserID()) {
+        this.setState({chatRoom: changeRoom.chatRoom});
+      }
+    });
   }
 
   send = () => {
@@ -56,11 +72,6 @@ export default class InputMessage extends Component {
           className="InputMessage-button"
           onClick={() => {
             this.send();
-            /*this.state.socket.emit('change-room-front', {
-              client: this.state.id,
-              chatRoom: SessionStorageService.getChatRoomID()===2?1:2
-            });
-            console.log("change room!");*/
           }}
         >
           Send
