@@ -3,6 +3,7 @@ import { Button } from "@material-ui/core";
 import "./LogIn.css";
 import SessionStorageService from "../SessionStorageService";
 import axios from "axios";
+import history from "../history";
 var utilities = require("../Utilities.json");
 export default class LogIn extends Component {
   constructor(props) {
@@ -33,7 +34,8 @@ export default class LogIn extends Component {
             const id = response.data.userId;
             SessionStorageService.setUserID(id);
             SessionStorageService.setChatRoomID(0);
-            window.location.href = "/chat";
+            history.push("/chat");
+            // window.location.href = "/chat";
             break;
 
           // Other case

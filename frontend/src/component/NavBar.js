@@ -5,10 +5,12 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import IconButton from "@material-ui/core/IconButton";
 import "./NavBar.css";
 import SessionStorageService from "../SessionStorageService";
+import history from "../history";
 export default class NavBar extends Component {
   logOut = () => {
     SessionStorageService.checkOut();
-    window.location.href = "/";
+    history.push("/");
+    // window.location.href = "/";
   };
   render() {
     return (
