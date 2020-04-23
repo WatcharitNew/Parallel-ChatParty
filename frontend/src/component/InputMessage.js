@@ -19,8 +19,10 @@ export default class InputMessage extends Component {
   }
 
   componentDidMount = () => {
-    this.state.socket.emit("login", {
-      userName: SessionStorageService.getUserName(),
+    this.state.socket.on("please-login", () => {
+      this.state.socket.emit("login", {
+        userName: this.state.name,
+      });
     });
     this.response();
   }

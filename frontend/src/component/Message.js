@@ -24,8 +24,10 @@ export default class Message extends Component {
 
   componentDidMount = () => {
     console.log(this.state.name);
-    this.state.socket.emit("login", {
-      userName: this.state.name,
+    this.state.socket.on("please-login", () => {
+      this.state.socket.emit("login", {
+        userName: this.state.name,
+      });
     });
     this.response();
     this.loadMessage();
