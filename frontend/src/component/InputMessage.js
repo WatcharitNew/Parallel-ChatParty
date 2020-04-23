@@ -27,16 +27,16 @@ export default class InputMessage extends Component {
       });
     });
     this.response();
-  }
+  };
 
   response = () => {
     this.state.socket.on("change-room-back", (changeRoom) => {
       console.log(changeRoom);
-      if(changeRoom.client === SessionStorageService.getUserID()) {
-        this.setState({chatRoom: changeRoom.chatRoom});
+      if (changeRoom.client === SessionStorageService.getUserID()) {
+        this.setState({ chatRoom: changeRoom.chatRoom });
       }
     });
-  }
+  };
 
   send = () => {
     const { input, id, chatRoom } = this.state;
@@ -52,36 +52,69 @@ export default class InputMessage extends Component {
   changeInput = (e) => {
     this.setState({ input: e.target.value });
   };
-
   render() {
-    return (
-      <div className="InputMessage-wrap">
-        <input
-          className="InputMessage-input"
-          id="InputMessage"
-          maxLength="30"
-          required
-          value={this.state.input}
-          onChange={(e) => this.changeInput(e)}
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
+    if (this.state.chatRoom == 0) {
+      return (
+        <div className="InputMessage-wrap">
+          <input
+            className="InputMessage-input"
+            id="InputMessage"
+            maxLength="30"
+            required
+            value={this.state.input}
+            onChange={(e) => this.changeInput(e)}
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                this.send();
+              }
+            }}
+            autoComplete="off"
+            disabled
+          />
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#65B2FA" }}
+            className="InputMessage-button"
+            onClick={() => {
               this.send();
-            }
-          }}
-          autoComplete="off"
-        />
-        <Button
-          variant="contained"
-          style={{ backgroundColor: "#65B2FA" }}
-          className="InputMessage-button"
-          onClick={() => {
-            this.send();
-          }}
-        >
-          Send
-          <SendIcon />
-        </Button>
-      </div>
-    );
+            }}
+            disabled
+          >
+            Send
+            <SendIcon />
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="InputMessage-wrap">
+          <input
+            className="InputMessage-input"
+            id="InputMessage"
+            maxLength="30"
+            required
+            value={this.state.input}
+            onChange={(e) => this.changeInput(e)}
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                this.send();
+              }
+            }}
+            autoComplete="off"
+          />
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#65B2FA" }}
+            className="InputMessage-button"
+            onClick={() => {
+              this.send();
+            }}
+          >
+            Send
+            <SendIcon />
+          </Button>
+        </div>
+      );
+    }
   }
 }
