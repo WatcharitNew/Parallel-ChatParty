@@ -15,10 +15,12 @@ export default class InputMessage extends Component {
           ? 1
           : SessionStorageService.getChatRoomID(),
       socket: props.socket,
+      name: SessionStorageService.getUserName(),
     };
   }
 
   componentDidMount = () => {
+    console.log(this.state.name);
     this.state.socket.on("please-login", () => {
       this.state.socket.emit("login", {
         userName: this.state.name,
