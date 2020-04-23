@@ -29,12 +29,6 @@ export default class Message extends Component {
     });
     this.response();
     this.loadMessage();
-
-    //for create chatRoom
-    /*this.state.socket.emit('create-group', {
-      chatName: "Test2",
-      client: SessionStorageService.getUserID()
-    });*/
   };
 
   loadMessage = () => {
@@ -42,7 +36,9 @@ export default class Message extends Component {
       .get(utilities["backend-url"] + "/message/" + this.state.chatRoom)
       .then((res) => {
         console.log(res.data);
-        this.setState({ message: res.data });
+        this.setState({ message: res.data }, () => {
+          this.scrollToBottom();
+        });
       });
   };
 
@@ -77,11 +73,31 @@ export default class Message extends Component {
       }
     });
 
+    this.state.socket.on("left-member", (memberLeft) => {
+      console.log(memberLeft);
+      if (memberLeft.userName === this.state.name) {
+        this.setState({message: []});
+      }
+      else if (memberLeft.chatRoom === this.state.chatRoom) {
+        const { message } = this.state;
+        const temp = message;
+        var tmpMember = memberLeft;
+        tmpMember.type = 1;
+        tmpMember.text = memberLeft.userName + " has left";
+        temp.push(tmpMember);
+        this.setState({ message: temp }, () => {
+          this.scrollToBottom();
+        });
+      }
+    });
+
     this.state.socket.on("change-room-back", (changeRoom) => {
       console.log(changeRoom);
       if (changeRoom.client === SessionStorageService.getUserID()) {
         this.setState({ chatRoom: changeRoom.chatRoom, message: [] }, () => {
-          this.loadMessage();
+          if(changeRoom.chatRoom !== 0) {
+            this.loadMessage();
+          }
         });
       }
     });
@@ -115,7 +131,6 @@ export default class Message extends Component {
   render() {
     return (
       <div>
-        <MessageAnnounce label={"Unread messages"} />
         {this.displayAllMessage()}
         <div ref={this.state.ref} />
       </div>
