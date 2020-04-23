@@ -3,6 +3,7 @@ import "./Chat.css";
 import ChatMessage from "./ChatMessage";
 import ChatRoom from "./ChatRoom";
 import NavBar from "./NavBar";
+import SessionStorageService from "../SessionStorageService";
 export default class Chat extends Component {
   render() {
     return (
@@ -28,5 +29,7 @@ export default class Chat extends Component {
       </div>
     );
   }
-  componentDidMount() {}
+  componentDidMount() {
+    SessionStorageService.setChatRoomID(0);
+  }
 }

@@ -32,7 +32,7 @@ export default class LogIn extends Component {
             console.log("already push");
             const id = response.data.userId;
             SessionStorageService.setUserID(id);
-            SessionStorageService.setChatRoomID(1);
+            SessionStorageService.setChatRoomID(0);
             window.location.href = "/chat";
             break;
 
