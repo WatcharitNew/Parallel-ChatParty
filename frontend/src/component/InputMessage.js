@@ -14,7 +14,7 @@ export default class InputMessage extends Component {
       id: SessionStorageService.getUserID(),
       chatRoom:
         SessionStorageService.getChatRoomID().toString() === ""
-          ? 1
+          ? 0
           : SessionStorageService.getChatRoomID(),
       socket: props.socket,
       name: SessionStorageService.getUserName(),
