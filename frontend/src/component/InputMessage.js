@@ -3,6 +3,8 @@ import "./InputMessage.css";
 import { Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import SessionStorageService from "../SessionStorageService";
+import axios from "axios";
+var utilities = require("../Utilities.json");
 export default class InputMessage extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,26 @@ export default class InputMessage extends Component {
     });
     this.setState({ input: "" });
     console.log("message sent!");
+    axios
+      .patch(
+        utilities["backend-url"] +
+          "/chatroom/read/" +
+          this.state.chatRoom +
+          "/" +
+          SessionStorageService.getUserID(),
+        {}
+      )
+      .then((response) => {
+        switch (response.status) {
+          case 200:
+            console.log("already read!");
+            break;
+
+          // Other case
+          default:
+            console.log("Status code is " + response.status);
+        }
+      });
   };
 
   changeInput = (e) => {

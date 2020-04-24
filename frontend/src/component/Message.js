@@ -36,11 +36,52 @@ export default class Message extends Component {
   loadMessage = () => {
     axios
       .get(utilities["backend-url"] + "/message/" + this.state.chatRoom)
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ message: res.data }, () => {
-          this.scrollToBottom();
-        });
+      .then((resAll) => {
+        console.log(resAll.data);
+        var allMessage = resAll.data;
+        axios
+          .get(
+            utilities["backend-url"] +
+              "/message/" +
+              this.state.chatRoom +
+              "/" +
+              SessionStorageService.getUserID()
+          )
+          .then((resUnread) => {
+            console.log(resUnread.data);
+            var unreadMessage = resUnread.data;
+            var message = allMessage.slice(
+              0,
+              allMessage.length - unreadMessage.length
+            );
+            if(unreadMessage.length !== 0){
+              message.push({ type: 1, text: "Unread messages" });
+              message = message.concat(unreadMessage);
+            }
+            this.setState({ message: message }, () => {
+              this.scrollToBottom();
+            });
+          });
+        axios
+          .patch(
+            utilities["backend-url"] +
+              "/chatroom/read/" +
+              this.state.chatRoom +
+              "/" +
+              SessionStorageService.getUserID(),
+            {}
+          )
+          .then((response) => {
+            switch (response.status) {
+              case 200:
+                console.log("already read!");
+                break;
+
+              // Other case
+              default:
+                console.log("Status code is " + response.status);
+            }
+          });
       });
   };
 
@@ -78,9 +119,8 @@ export default class Message extends Component {
     this.state.socket.on("left-member", (memberLeft) => {
       console.log(memberLeft);
       if (memberLeft.userName === this.state.name) {
-        this.setState({message: []});
-      }
-      else if (memberLeft.chatRoom === this.state.chatRoom) {
+        this.setState({ message: [] });
+      } else if (memberLeft.chatRoom === this.state.chatRoom) {
         const { message } = this.state;
         const temp = message;
         var tmpMember = memberLeft;
@@ -97,7 +137,7 @@ export default class Message extends Component {
       console.log(changeRoom);
       if (changeRoom.client === SessionStorageService.getUserID()) {
         this.setState({ chatRoom: changeRoom.chatRoom, message: [] }, () => {
-          if(changeRoom.chatRoom !== 0) {
+          if (changeRoom.chatRoom !== 0) {
             this.loadMessage();
           }
         });
