@@ -97,6 +97,26 @@ export default class Message extends Component {
         tmpMsg.type = 0;
         tmpMsg.senderName = messageNew.userName;
         temp.push(tmpMsg);
+        axios
+          .patch(
+            utilities["backend-url"] +
+              "/chatroom/read/" +
+              this.state.chatRoom +
+              "/" +
+              SessionStorageService.getUserID(),
+            {}
+          )
+          .then((response) => {
+            switch (response.status) {
+              case 200:
+                console.log("already read!");
+                break;
+
+              // Other case
+              default:
+                console.log("Status code is " + response.status);
+            }
+          });
         this.setState({ message: temp }, () => {
           this.scrollToBottom();
         });
@@ -112,6 +132,26 @@ export default class Message extends Component {
         tmpMember.type = 1;
         tmpMember.text = memberNew.userName + " has joined";
         temp.push(tmpMember);
+        axios
+          .patch(
+            utilities["backend-url"] +
+              "/chatroom/read/" +
+              this.state.chatRoom +
+              "/" +
+              SessionStorageService.getUserID(),
+            {}
+          )
+          .then((response) => {
+            switch (response.status) {
+              case 200:
+                console.log("already read!");
+                break;
+
+              // Other case
+              default:
+                console.log("Status code is " + response.status);
+            }
+          });
         this.setState({ message: temp }, () => {
           this.scrollToBottom();
         });
@@ -129,6 +169,26 @@ export default class Message extends Component {
         tmpMember.type = 1;
         tmpMember.text = memberLeft.userName + " has left";
         temp.push(tmpMember);
+        axios
+          .patch(
+            utilities["backend-url"] +
+              "/chatroom/read/" +
+              this.state.chatRoom +
+              "/" +
+              SessionStorageService.getUserID(),
+            {}
+          )
+          .then((response) => {
+            switch (response.status) {
+              case 200:
+                console.log("already read!");
+                break;
+
+              // Other case
+              default:
+                console.log("Status code is " + response.status);
+            }
+          });
         this.setState({ message: temp }, () => {
           this.scrollToBottom();
         });
