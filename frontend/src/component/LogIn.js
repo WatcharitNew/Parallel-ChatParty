@@ -17,7 +17,7 @@ export default class LogIn extends Component {
   gotoChat = () => {
     SessionStorageService.setUserName(this.state.userName);
     axios
-      .post(utilities["backend-url"] + "/user/login", {
+      .post(utilities["backend-url"] + ":10000" + "/user/login", {
         userName: this.state.userName,
       })
       .then((response) => {

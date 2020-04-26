@@ -52,6 +52,7 @@ export default class InputMessage extends Component {
     axios
       .patch(
         utilities["backend-url"] +
+          ":10000" +
           "/chatroom/read/" +
           this.state.chatRoom +
           "/" +

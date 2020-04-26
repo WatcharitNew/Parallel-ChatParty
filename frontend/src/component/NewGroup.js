@@ -3,11 +3,12 @@ import "./NewGroup.css";
 import { Button } from "@material-ui/core";
 import socketIOClient from "socket.io-client";
 import SessionStorageService from "../SessionStorageService";
+var utilities = require("../Utilities.json");
 export default class NewGroupCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { input: "", endpoint: "http://localhost:10001" };
+    this.state = { input: "", endpoint: utilities["backend-url"] + ":10001" };
   }
   changeInput = (e) => {
     this.setState({ input: e.target.value });

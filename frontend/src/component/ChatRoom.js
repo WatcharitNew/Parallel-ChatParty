@@ -12,7 +12,7 @@ export default class ChatRoom extends Component {
 
     this.state = {
       groupList: [],
-      endpoint: "http://localhost:10001",
+      endpoint: utilities["backend-url"] + ":10001",
     };
   }
   render() {
@@ -57,7 +57,7 @@ export default class ChatRoom extends Component {
   async componentDidMount() {
     let userId = SessionStorageService.getUserID();
     await axios
-      .get(utilities["backend-url"] + `/chatroom/${userId}`)
+      .get(utilities["backend-url"] + ":10000" + `/chatroom/${userId}`)
       .then((response) => {
         switch (response.status) {
           case 200:

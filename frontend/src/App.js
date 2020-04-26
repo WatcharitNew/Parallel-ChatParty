@@ -5,12 +5,13 @@ import Chat from "./component/Chat";
 import { Route, Switch, Router } from "react-router-dom";
 import socketIOClient from "socket.io-client";
 import history from "./history";
+var utilities = require("./Utilities.json");
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      socket: socketIOClient("http://localhost:10001"),
+      socket: socketIOClient(utilities["backend-url"] + ":10001"),
     };
   }
 

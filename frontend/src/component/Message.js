@@ -35,13 +35,14 @@ export default class Message extends Component {
 
   loadMessage = () => {
     axios
-      .get(utilities["backend-url"] + "/message/" + this.state.chatRoom)
+      .get(utilities["backend-url"] + ":10000" + "/message/" + this.state.chatRoom)
       .then((resAll) => {
         console.log(resAll.data);
         var allMessage = resAll.data;
         axios
           .get(
             utilities["backend-url"] +
+              ":10000" +
               "/message/" +
               this.state.chatRoom +
               "/" +
@@ -65,6 +66,7 @@ export default class Message extends Component {
         axios
           .patch(
             utilities["backend-url"] +
+              ":10000" +
               "/chatroom/read/" +
               this.state.chatRoom +
               "/" +
