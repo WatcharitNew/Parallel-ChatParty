@@ -42,40 +42,42 @@ export default class InputMessage extends Component {
 
   send = () => {
     const { input, id, chatRoom } = this.state;
-    this.state.socket.emit("sent-message", {
-      text: input,
-      client: id,
-      chatRoom: chatRoom,
-    });
-    this.setState({ input: "" });
-    console.log("message sent!");
-    axios
-      .patch(
-        utilities["backend-url"] +
-          "/chatroom/read/" +
-          this.state.chatRoom +
-          "/" +
-          SessionStorageService.getUserID(),
-        {}
-      )
-      .then((response) => {
-        switch (response.status) {
-          case 200:
-            console.log("already read!");
-            break;
-
-          // Other case
-          default:
-            console.log("Status code is " + response.status);
-        }
+    if (input.trim() !== "") {
+      this.state.socket.emit("sent-message", {
+        text: input.trim(),
+        client: id,
+        chatRoom: chatRoom,
       });
+      this.setState({ input: "" });
+      console.log("message sent!");
+      axios
+        .patch(
+          utilities["backend-url"] +
+            "/chatroom/read/" +
+            this.state.chatRoom +
+            "/" +
+            SessionStorageService.getUserID(),
+          {}
+        )
+        .then((response) => {
+          switch (response.status) {
+            case 200:
+              console.log("already read!");
+              break;
+
+            // Other case
+            default:
+              console.log("Status code is " + response.status);
+          }
+        });
+    }
   };
 
   changeInput = (e) => {
     this.setState({ input: e.target.value });
   };
   render() {
-    if (this.state.chatRoom == 0) {
+    if (this.state.chatRoom === 0) {
       return (
         <div className="InputMessage-wrap">
           <input
