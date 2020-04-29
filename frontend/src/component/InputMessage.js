@@ -52,7 +52,7 @@ export default class InputMessage extends Component {
       console.log("message sent!");
       axios
         .patch(
-          utilities["backend-url"] +
+          utilities["backend-url"] + ":10000" +
             "/chatroom/read/" +
             this.state.chatRoom +
             "/" +
