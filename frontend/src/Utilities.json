@@ -1,3 +1,9 @@
 {
+<<<<<<< HEAD
     "backend-url": "http://localhost:10000/"
+||||||| merged common ancestors
+    "backend-url": "http://localhost:10000"
+=======
+    "backend-url": "http://localhost"
+>>>>>>> 80159c568068fb8f5bf5fb3a480e7e59a8a7f468
 }

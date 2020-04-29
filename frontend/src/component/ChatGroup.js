@@ -3,6 +3,7 @@ import "./ChatGroup.css";
 import socketIOClient from "socket.io-client";
 import SessionStorageService from "../SessionStorageService";
 import { Button } from "@material-ui/core";
+var utilities = require("../Utilities.json");
 export default class ChatGroup extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ export default class ChatGroup extends Component {
       chatName: this.props.data.chatName,
       chatRoomId: this.props.data.chatRoomId,
       isMember: this.props.data.isMember,
-      endpoint: "http://localhost:10001",
+      endpoint: utilities["backend-url"] + ":10001",
       socket: this.props.socket,
       selected: false,
     };
